@@ -3,374 +3,1006 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجلة المحيميد | عيد الفطر المبارك</title>
+    <title>مجلة أسرة المحيميد - عيد الفطر المبارك</title>
+    
     <!-- Bootstrap 5 RTL -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
-    <!-- Font Awesome 6 (الأيقونات) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Cairo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- HT Moshreq Pro (استخدام خط بديل مؤقتاً) -->
+    <style>
+        @font-face {
+            font-family: 'HT Moshreq Pro';
+            src: url('https://fonts.cdnfonts.com/css/din-next-lt-arabic') format('woff2');
+            /* استخدام خط عربي بديل مشابه */
+            font-display: swap;
+        }
+    </style>
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #8b6b4d;
+            --primary-light: #b89b85;
+            --secondary-color: #a7c4b5;
+            --accent-color: #d4a59a;
+            --dark-brown: #5c3e2e;
+            --light-bg: #fbf9f7;
+            --card-bg: #ffffff;
+            --text-primary: #3d2b1f;
+            --text-secondary: #6b4f3a;
+            --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.05);
+            --gradient-warm: linear-gradient(135deg, #fff8f5 0%, #fef3ed 100%);
+            --gradient-gold: linear-gradient(145deg, #fdf1e6 0%, #f9e4d4 100%);
+            --border-radius-card: 24px;
+            --border-radius-image: 20px;
+            --border-radius-circle: 50%;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #fbf7f3;
-            color: #3d2b1f;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
             overflow-x: hidden;
         }
+        
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            color: #5c3e2e;
+            font-family: 'HT Moshreq Pro', 'Cairo', 'Tajawal', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--dark-brown);
         }
-        :root {
-            --primary: #8b6b4d;
-            --primary-light: #b89b85;
-            --accent: #d4a59a;
-            --dark: #5c3e2e;
-            --light: #fbf3ed;
-            --icon-bg: #f0e3da;
-            --border-radius-card: 28px;
-            --border-radius-img: 50%;
-        }
-
-        /* غلاف بدون صورة – تصميم أنيق */
-        .cover-header {
-            background: linear-gradient(145deg, #fef3e8 0%, #fae6d8 100%);
-            border-radius: 0 0 70px 70px;
-            padding: 3rem 0;
-            margin-bottom: 3rem;
-            box-shadow: 0 15px 30px rgba(92,62,46,0.08);
-            border-bottom: 3px solid var(--accent);
-        }
-        .family-crest {
-            font-size: 4.5rem;
-            color: var(--primary);
-            text-shadow: 2px 2px 0 #fff, 5px 5px 0 rgba(212,165,154,0.3);
-        }
-        .family-name {
-            font-size: 3.8rem;
-            font-weight: 800;
-            background: linear-gradient(130deg, #5c3e2e, #8b6b4d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .family-sub {
-            font-size: 1.6rem;
-            color: var(--primary-light);
-            font-weight: 500;
-        }
-
-        /* كروت عامة */
-        .card-custom {
-            background: white;
-            border-radius: var(--border-radius-card);
-            padding: 1.7rem 1.2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: 0.3s;
-            height: 100%;
-            border: 1px solid rgba(139,107,77,0.1);
-        }
-        .card-custom:hover { transform: translateY(-6px); box-shadow: 0 20px 35px rgba(92,62,46,0.1); }
-
-        /* دوائر للصور والأيقونات */
-        .circle-frame {
-            width: 120px; height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-            background: #f0e3da;
-            transition: 0.2s;
-        }
-        .circle-frame-small {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-            background: #f0e3da;
-        }
-        .icon-circle {
-            width: 120px; height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #fae6d8, #f5d9cb);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            border: 4px solid white;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-            color: var(--primary);
-            font-size: 3.2rem;
-        }
-        .icon-circle-small {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #fae6d8, #f5d9cb);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid white;
-            color: var(--primary);
-            font-size: 2.2rem;
-        }
-
-        /* عناوين */
+        
+        /* عناوين مميزة بتدرج */
         .section-title {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin: 2.5rem 0 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
             position: relative;
             display: inline-block;
-            background: linear-gradient(145deg, #5c3e2e, #8b6b4d);
+            background: linear-gradient(145deg, #5c3e2e 0%, #8b6b4d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 0.5rem;
+            background-clip: text;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
         }
-
-        .kpi-card {
-            background: #fffcf9;
-            border-radius: 35px;
-            padding: 2rem 1.5rem;
-            border: 1px solid #edd9cf;
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        /* كروت عامة */
+        .card-custom {
+            background: var(--card-bg);
+            border: none;
+            border-radius: var(--border-radius-card);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            height: 100%;
             position: relative;
             overflow: hidden;
         }
+        
+        .card-custom:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* كروت KPI مخصصة */
+        .kpi-card {
+            background: var(--gradient-warm);
+            border-radius: var(--border-radius-card);
+            padding: 1.8rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .bg-icon-float {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            font-size: 6rem;
+            color: rgba(139, 107, 77, 0.1);
+            transition: var(--transition-smooth);
+            z-index: 1;
+        }
+        
+        .kpi-card:hover .bg-icon-float {
+            transform: scale(1.2) translate(-10px, -10px);
+            color: rgba(139, 107, 77, 0.15);
+        }
+        
+        .kpi-card .content {
+            position: relative;
+            z-index: 2;
+        }
+        
         .kpi-number {
             font-size: 3rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--primary-color);
             line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Cairo', sans-serif;
         }
-        .bg-icon-float {
-            position: absolute;
-            left: 10px; bottom: 5px;
-            font-size: 6rem;
-            color: rgba(139,107,77,0.1);
-            z-index: 0;
-        }
-
-        /* تحسين المواليد بدون صور */
-        .baby-icon {
-            background: #f1e2d9;
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #8b6b4d;
-            border: 2px solid white;
-            margin: 0 auto 0.5rem;
-        }
-
-        .person-name { font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.2rem; }
-        .person-detail { color: #6b4f3a; font-size: 0.9rem; }
-
-        /* الشركات / الأيقونات */
-        .business-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            background: #f1e2d9;
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.8rem;
+        
+        /* معالجة الصور */
+        .img-rounded {
+            border-radius: var(--border-radius-image);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            object-fit: cover;
+            width: 100%;
+            height: auto;
             border: 3px solid white;
         }
-
-        a { text-decoration: none; color: var(--dark); }
-        a:hover { color: var(--primary); }
-
+        
+        .img-circle {
+            border-radius: var(--border-radius-circle);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            object-fit: cover;
+            width: 140px;
+            height: 140px;
+            border: 4px solid white;
+        }
+        
+        .img-circle-small {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .img-gallery {
+            border-radius: var(--border-radius-image);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        
+        .img-gallery:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .image-frame {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-color);
+            border-radius: var(--border-radius-image);
+            opacity: 0.2;
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+        
+        .image-frame:hover::before {
+            top: 10px;
+            right: 10px;
+        }
+        
+        /* Cover image with overlay */
+        .cover-image {
+            position: relative;
+            border-radius: var(--border-radius-card);
+            overflow: hidden;
+        }
+        
+        .cover-image img {
+            transition: var(--transition-smooth);
+        }
+        
+        .cover-image:hover img {
+            transform: scale(1.02);
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(92,62,46,0.4) 0%, rgba(212,165,154,0.2) 100%);
+            z-index: 1;
+        }
+        
+        .cover-text {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: white;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Header خاص بالمجلة */
+        .magazine-header {
+            background: var(--gradient-gold);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 60px 60px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .family-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+            font-family: 'HT Moshreq Pro', 'Cairo', sans-serif;
+            letter-spacing: -1px;
+        }
+        
+        .family-sub {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            font-weight: 400;
+        }
+        
+        /* فواصل مزخرفة */
+        .decorative-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            width: 150px;
+            margin: 2rem auto;
+        }
+        
+        .decorative-divider-light {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+        
+        /* خلفيات متدرجة */
+        .bg-gradient-soft {
+            background: var(--gradient-warm);
+            border-radius: var(--border-radius-card);
+            padding: 2rem;
+        }
+        
+        .bg-gradient-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fdf3ec 100%);
+        }
+        
+        /* تحسين العناوين */
+        .title-decorated {
+            font-size: 2rem;
+            position: relative;
+            padding-right: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .title-decorated::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        /* بطاقات الأشخاص */
+        .person-card {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .person-name {
+            font-weight: 600;
+            margin-top: 0.8rem;
+            color: var(--dark-brown);
+        }
+        
+        .person-detail {
+            color: var(--primary-light);
+            font-size: 0.9rem;
+        }
+        
+        .achievement-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        
+        /* تحسين سرعة التحميل */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .lazy.loaded {
+            opacity: 1;
+        }
+        
+        /* تنسيق النصوص */
+        .arabic-text {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+        
         .greeting-card {
             background: white;
-            border-radius: 40px;
+            border-radius: var(--border-radius-card);
             padding: 2rem;
-            border-right: 6px solid var(--accent);
+            box-shadow: var(--shadow-sm);
+            border-right: 5px solid var(--accent-color);
         }
-
+        
+        /* انميشن عند التمرير */
         .fade-up {
-            opacity: 0; transform: translateY(20px);
-            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .fade-up.active { opacity: 1; transform: translateY(0); }
+        
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* أيقونة البنات - تصميم جميل */
+        .girl-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #d4a59a 0%, #b89b85 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 165, 154, 0.3);
+            margin: 0 auto 1rem;
+            border: 3px solid white;
+        }
+        
+        .girl-icon-small {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4a59a 0%, #b89b85 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 165, 154, 0.3);
+            border: 3px solid white;
+        }
+        
+        /* تحسين شاشات الجوال */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .family-name {
+                font-size: 2.5rem;
+            }
+            
+            .kpi-number {
+                font-size: 2.5rem;
+            }
+            
+            .img-circle {
+                width: 100px;
+                height: 100px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Google Apps Script doGet مع meta tags للتوافق -->
+    <div style="display: none;">
+        <!-- هذه meta tags ستكون في الـ head فعلياً ولكن نضعها هنا كمرجع للتضمين في Code.gs -->
+        <!--
+        function doGet() {
+            return HtmlService.createTemplateFromFile('index')
+                .evaluate()
+                .addMetaTag('viewport', 'width=device-width, initial-scale=1.0')
+                .setTitle('مجلة أسرة المحيميد')
+                .setFaviconUrl('https://example.com/favicon.ico');
+        }
+        -->
+    </div>
 
-<!-- ========== غلاف بدون صورة ========== -->
-<div class="cover-header text-center">
+    <!-- الغلاف -->
+    <div class="magazine-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="family-name">مجلة أسرة المحيميد</h1>
+                    <h2 class="family-sub">أبناء عبدالله حمد محمد الأمير المحيميد</h2>
+                    <h3 class="family-sub" style="font-size: 1.3rem;">بني خالد - البصر</h3>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="image-frame">
+                        <img src="1.png" alt="صورة عائلية" class="img-rounded" style="max-height: 250px;" onerror="this.src='https://via.placeholder.com/250x300/f9e4d4/5c3e2e?text=المحيميد'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <i class="fas fa-moon-star family-crest mb-3"></i>
-        <h1 class="family-name">مجلة المحيميد</h1>
-        <div class="family-sub">أبناء عبدالله حمد محمد الأمير المحيميد • بني خالد - البصر</div>
-        <div class="decorative-divider my-3"></div>
-        <h2 class="h3" style="color:#8b6b4d;">عيد الفطر المبارك 1446</h2>
-    </div>
-</div>
-
-<div class="container">
-    <!-- القسم 1: المعايدة (صورة 1) -->
-    <div class="row mb-5 align-items-center">
-        <div class="col-lg-7">
-            <div class="greeting-card fade-up">
-                <h2 class="title-decorated">بسم الله الرحمن الرحيم</h2>
-                <p class="arabic-text" style="font-size:1.2rem;">الحمدلله رب العالمين، والصلاة والسلام على أشرف المرسلين.</p>
-                <p>يسرني في هذه المناسبة السعيدة، مناسبة عيد الفطر المبارك، أن ارفع أسمى آيات التهاني والتبريكات إلى أولادي وأولاد إخواني الكرام، وإلى كافة أفراد العائلة. نسأل الله أن يعيده علينا وعليكم بالخير والبركة، وأن يجمعنا دائماً على الحب والتآزر وصلة الرحم.</p>
-                <p class="mt-3">فمثل هذه الاجتماعات فيها خير كثير، وهي من صلة الرحم التي أمرنا بها. كل عام وأنتم بخير.</p>
+        <!-- القسم الأول: البسملة والمعايدة -->
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <div class="greeting-card fade-up">
+                    <h2 class="title-decorated">بسم الله الرحمن الرحيم</h2>
+                    <p class="arabic-text" style="font-size: 1.2rem;">الحمدلله وحده والصلاة والسلام على من لا نبي بعده</p>
+                    <p class="arabic-text">يسرني في هذه المناسبة السعيدة، مناسبة عيد الفطر المبارك، أن ارفع أسمى آيات التهنئة والتبريكات إلى أولادي وأولاد اخواني الكرام، وإلى كافة أفراد العائلة. نسأل الله أن يعيد هذا العيد علينا وعليكم بالخير والبركة، وأن يجمعنا دائماً على الحب والتآزر وصلة الرحم</p>
+                    <p class="arabic-text">فمثل هذه الاجتماعات فيها خير كثير وهي من صلة الرحم التي امرنا بها والعيد مناسبة عظيمة للسلام والتهنئة وتصفية القلوب اسأل الله تعالى أن يجمع شملنا على طاعته وان يتقبل منا صالح الأعمال كما اتقدم بجزيل الشكر والتقدير لكل القائمين على إصدار هذه الصحيفة، على جهدهم المبارك وكل عام وأنتم بخير</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cover-image">
+                    <img src="2.jpeg" alt="صورة" class="img-rounded" style="width: 100%;" onerror="this.src='https://via.placeholder.com/400x500/f9e4d4/5c3e2e?text=صورة+ترحيبية'">
+                    <div class="cover-overlay"></div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-5 text-center">
-            <div class="image-frame">
-                <img src="1.png" alt="صورة 1" class="circle-frame" style="width:220px; height:220px;" onerror="this.src='https://via.placeholder.com/220/f9e4d4/5c3e2e?text=🌙'">
+
+        <!-- كلمة رئيسية -->
+        <div class="row mb-5">
+            <div class="col-lg-5">
+                <img src="3.jpeg" alt="صورة" class="img-rounded" style="width: 100%;" onerror="this.src='https://via.placeholder.com/500x600/f9e4d4/5c3e2e?text=صورة'">
+            </div>
+            <div class="col-lg-7">
+                <div class="bg-gradient-soft">
+                    <h2 class="title-decorated">الحمد لله الذي بنعمته تتم الصالحات</h2>
+                    <p class="arabic-text">الحمد لله الذي أكمل لنا العدة وبلغنا بفضله تمام الصيام والقيام. إن الفراغ من عبادة الصوم نعمة جليلة تستوجب شكراً عميقاً، فكم من نفسٍ تمنت البلوغ والتمام فحال بينها وبين ذلك القدر، وكم من جسدٍ منعه المرض عن الإتمام، فكان توفيق الله لنا بإدراك ختام الشهر محض فضلٍ ومنة يستحق أن تلهج بها الألسن حمداً وثناءً. إن الشكر الحقيقي على تمام الصيام يكمن في استشعار لذة الطاعة، والحرص على بقاء أثرها في النفوس والأخلاق، سائلين المولى عز وجل أن يتقبل منا ومنكم القليل، ويتجاوز عن التقصير، وأن يجعل تمام صيامنا عتقاً من النيران وفوزاً بالجنان، ونسأل الله تعالى أن يتغمد مواتنا ووالدينا بالرحمة الواسعة الذي كانوا يشاركوننا معنا في الأعياد السابقة.</p>
+                    <p class="arabic-text">وبمناسبة هذا التمام وحلول عيد الفطر المبارك، نتقدم لكم أيها القراء الكرام بأطيب التهاني وأصدق التبريكات، سائلين الله أن يعيده عليكم وعلى أسركم الكريمة باليمن والبركات، وكل عام وأنتم بخير وإلى الله أقرب.</p>
+                    <p class="arabic-text" style="font-weight: 600;">أخوكم : محمد الصالح أبوعبدالله</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- تهنئة أخرى -->
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <div class="kpi-card">
+                    <i class="fas fa-moon bg-icon-float"></i>
+                    <div class="content">
+                        <h3>بسم الله الرحمن الرحيم</h3>
+                        <p class="arabic-text" style="font-size: 1.1rem;">الحمد الله أولًا وأخراً ظاهرًا وباطناً ..</p>
+                        <p class="arabic-text">أتقدم بالتهنئة أولًا لوالدي الكريم ثم لأبناء عمي الكرام وإخوتي الأعزاء وبنيهم، على قدوم عيد الفطر المبارك، و أحمد الله على أن أتم لنا شهر رمضان على خير، وأدعو الله أن يتقبل منا الصيام والقيام، وأن يجعلنا من عتقاء هذا الشهر. أرسل لكم أصدق التهاني وأطيب الأمنيات في هذا العيد، سائلاً المولى أن يملأ حياتكم بالفرح، والسعادة، والبركة. عساكم من عواده، وكل عام وأنتم بألف خير.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الجامعة -->
+        <h2 class="section-title fade-up">التعليم الجامعي</h2>
+        <div class="row mb-5">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card-custom person-card fade-up">
+                    <div class="image-frame">
+                        <img src="4.jpeg" alt="عمر فهد" class="img-circle" onerror="this.src='https://via.placeholder.com/140x140/f9e4d4/5c3e2e?text=عمر'">
+                    </div>
+                    <h4 class="person-name">عمر فهد البراهيم المحيميد</h4>
+                    <p class="person-detail">جامعة - شريعة</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card-custom person-card fade-up">
+                    <div class="image-frame">
+                        <img src="5.jpeg" alt="جابر عبدالله" class="img-circle" onerror="this.src='https://via.placeholder.com/140x140/f9e4d4/5c3e2e?text=جابر'">
+                    </div>
+                    <h4 class="person-name">جابر عبدالله البراهيم المحيميد</h4>
+                    <p class="person-detail">تسويق وابتكار</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card-custom person-card fade-up">
+                    <div class="image-frame">
+                        <img src="6.jpeg" alt="راكان احمد" class="img-circle" onerror="this.src='https://via.placeholder.com/140x140/f9e4d4/5c3e2e?text=راكان'">
+                    </div>
+                    <h4 class="person-name">راكان احمد محمد المحيميد</h4>
+                    <p class="person-detail">رياضيات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الثانوي -->
+        <h2 class="section-title fade-up">التعليم الثانوي</h2>
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card-custom text-center">
+                    <div class="girl-icon-small">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>جنى علي البراهيم المحيميد</h4>
+                    <span class="achievement-badge">ثانوي</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom text-center">
+                    <div class="girl-icon-small">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>ديم ماجد البراهيم المحيميد</h4>
+                    <span class="achievement-badge">ثانوي</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom text-center">
+                    <img src="7.jpeg" alt="ريان البراهيم" class="img-circle-small mb-3" onerror="this.src='https://via.placeholder.com/100x100/f9e4d4/5c3e2e?text=ريان'">
+                    <h4>ريان البراهيم العبدالله المحيميد</h4>
+                    <span class="achievement-badge">ثانوي</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- التفوق الجامعي -->
+        <h2 class="section-title fade-up">التفوق الجامعي</h2>
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="kpi-card">
+                    <i class="fas fa-star bg-icon-float"></i>
+                    <div class="content">
+                        <div class="kpi-number">طب</div>
+                        <div class="girl-icon-small" style="margin: 0.5rem auto; width: 60px; height: 60px; font-size: 1.8rem;">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h4>نور يوسف محمد المحيميد</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="kpi-card">
+                    <i class="fas fa-chart-line bg-icon-float"></i>
+                    <div class="content">
+                        <div class="kpi-number">4.95</div>
+                        <div class="girl-icon-small" style="margin: 0.5rem auto; width: 60px; height: 60px; font-size: 1.8rem;">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>نوره عبدالله محمد المحيميد</h4>
+                        <p>تمويل</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="kpi-card">
+                    <i class="fas fa-chart-line bg-icon-float"></i>
+                    <div class="content">
+                        <div class="kpi-number">4.60</div>
+                        <h4>محمد احمد محمد المحيميد</h4>
+                        <p>ادارة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="kpi-card">
+                    <i class="fas fa-star bg-icon-float"></i>
+                    <div class="content">
+                        <div class="kpi-number">4.45</div>
+                        <h4>عزام حمد البراهيم المحيميد</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- التفوق الثانوي مع صور -->
+        <h2 class="section-title fade-up">التفوق الثانوي</h2>
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="girl-icon-small" style="margin: 0; width: 80px; height: 80px; font-size: 2rem;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h4>ديم ماجد البراهيم المحيميد</h4>
+                            <p class="achievement-badge">99.86%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <img src="9.jpeg" alt="مالك ماجد" class="img-circle-small" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=مالك'">
+                        </div>
+                        <div class="col-8">
+                            <h4>مالك ماجد البراهيم المحيميد</h4>
+                            <p class="achievement-badge">99.42%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="girl-icon-small" style="margin: 0; width: 80px; height: 80px; font-size: 2rem;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h4>جنى علي البراهيم المحيميد</h4>
+                            <p class="achievement-badge">99.37%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <img src="10.jpeg" alt="درة علي" class="img-circle-small" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=درة'">
+                        </div>
+                        <div class="col-8">
+                            <h4>درة علي البراهيم المحيميد</h4>
+                            <p class="achievement-badge">96.66%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="girl-icon-small" style="margin: 0; width: 80px; height: 80px; font-size: 2rem;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h4>وتين فيصل البراهيم المحيميد</h4>
+                            <p class="achievement-badge">100%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <img src="12.jpeg" alt="اسامه عبدالله" class="img-circle-small" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=اسامه'">
+                        </div>
+                        <div class="col-8">
+                            <h4>اسامه عبدالله محمد المحيميد</h4>
+                            <p class="achievement-badge">100%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <img src="13.jpeg" alt="وجيه عبدالعزيز" class="img-circle-small" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=وجيه'">
+                        </div>
+                        <div class="col-8">
+                            <h4>وجيه عبدالعزيز محمد المحيميد</h4>
+                            <p class="achievement-badge">99%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="girl-icon-small" style="margin: 0; width: 80px; height: 80px; font-size: 2rem;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h4>تالا صالح محمد المحيميد</h4>
+                            <p class="achievement-badge">95%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- حفظ القرآن -->
+        <h2 class="section-title fade-up">حفظ القرآن الكريم</h2>
+        <div class="row mb-5">
+            <div class="col-lg-4">
+                <div class="kpi-card text-center">
+                    <i class="fas fa-quran bg-icon-float"></i>
+                    <div class="kpi-number">كامل</div>
+                    <div class="girl-icon-small" style="margin: 0.5rem auto; width: 70px; height: 70px; font-size: 2rem;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>اروى عبدالله البراهيم المحيميد</h4>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="kpi-card text-center">
+                    <i class="fas fa-quran bg-icon-float"></i>
+                    <div class="kpi-number">١٥ جزء</div>
+                    <h4>حسام عبدالله البراهيم المحيميد</h4>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="kpi-card text-center">
+                    <i class="fas fa-quran bg-icon-float"></i>
+                    <div class="kpi-number">١٠ أجزاء</div>
+                    <div class="girl-icon-small" style="margin: 0.5rem auto; width: 70px; height: 70px; font-size: 2rem;">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>شادن علي البراهيم المحيميد</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- زواج ومواليد -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h2 class="section-title fade-up">زواج</h2>
+                <div class="card-custom text-center">
+                    <img src="15.jpeg" alt="روف علي" class="img-circle mb-3" style="width: 180px; height: 180px;" onerror="this.src='https://via.placeholder.com/180x180/f9e4d4/5c3e2e?text=روف'">
+                    <h3>روف علي المحيميد</h3>
+                    <p class="arabic-text">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title fade-up">المواليد الجدد</h2>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <img src="16.jpeg" alt="بلال" class="img-circle-small mb-2" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=بلال'">
+                            <h4>بلال بن ماجد البراهيم المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <div class="girl-icon-small" style="margin: 0 auto 0.5rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>رند بنت محمد البراهيم المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <div class="girl-icon-small" style="margin: 0 auto 0.5rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>فهدة بنت ابراهيم حمد البراهيم المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <img src="19.jpeg" alt="طلال" class="img-circle-small mb-2" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=طلال'">
+                            <h4>طلال بن عبدالله حمد البراهيم المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <div class="girl-icon-small" style="margin: 0 auto 0.5rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>مها بنت عبدالعزيز حمد البراهيم المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <img src="21.jpeg" alt="فهد خالد" class="img-circle-small mb-2" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=فهد'">
+                            <h4>فهد خالد عبدالله المحيميد</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card-custom text-center">
+                            <img src="22.jpeg" alt="سمو جهاد" class="img-circle-small mb-2" onerror="this.src='https://via.placeholder.com/80x80/f9e4d4/5c3e2e?text=سمو'">
+                            <h4>سمو جهاد صالح المحيميد</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المشاريع -->
+        <h2 class="section-title fade-up">مشاريع أبناء الأسرة</h2>
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-building bg-icon-float"></i>
+                    <h4>شركة نكتل الخليج</h4>
+                    <p>صالح و عبدالله محمد المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-flower bg-icon-float"></i>
+                    <h4>حفلتي للورد الطبيعي</h4>
+                    <p>عبدالعزيز محمد المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-tools bg-icon-float"></i>
+                    <h4>ورشة لمعة معدن</h4>
+                    <p>جهاد صالح محمد المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-hard-hat bg-icon-float"></i>
+                    <h4>المحيميد لمواد البناء</h4>
+                    <p>عبدالله حمد إبراهيم المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-store bg-icon-float"></i>
+                    <h4>محل موقع الحلى</h4>
+                    <p>إبراهيم عبدالله إبراهيم المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-couch bg-icon-float"></i>
+                    <h4>شركة الفيصل ، إيكا للاثاث</h4>
+                    <p>فيصل إبراهيم المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-car bg-icon-float"></i>
+                    <h4>صاد وان لزينة السيارات</h4>
+                    <p>صالح عبدالله صالح المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-tag bg-icon-float"></i>
+                    <h4>عبدالله محمد صالح المحيميد</h4>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-utensils bg-icon-float"></i>
+                    <h4>محل المحيميد للأواني</h4>
+                    <p>احمد و إبراهيم يوسف إبراهيم المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-tshirt bg-icon-float"></i>
+                    <h4>محل أيوب للمستلزمات الرجالية</h4>
+                    <p>أيوب إبراهيم المحيميد</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-custom">
+                    <i class="fas fa-building bg-icon-float"></i>
+                    <h4>مؤسسة فهد إبراهيم المحيميد</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <div class="card-custom text-center">
+                    <h3>رابط العائلة</h3>
+                    <img src="23.png" alt="QR Code" style="max-width: 200px;" onerror="this.src='https://via.placeholder.com/200x200/f9e4d4/5c3e2e?text=QR'">
+                    <p class="mt-3"><a href="https://linktr.ee/Al_mohaimeed" target="_blank">https://linktr.ee/Al_mohaimeed</a></p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card-custom">
+                    <h3>محتويات المجلة</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> الغلاف</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> نبذة</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> كلمة رئيسية</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> التعليم الجامعي</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> التعليم الثانوي</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> التفوق الجامعي والثانوي</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> حفظ القرآن 10-20-30</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> مشاريع أبناء الأسرة</li>
+                        <li class="mt-3"><strong>اخبار الاسرة:</strong></li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> الزواج - المواليد</li>
+                        <li><i class="fas fa-star ms-2" style="color: var(--accent-color);"></i> الخاتمة</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- القسم 2: الحمد لله الذي بنعمته (صورة 2) -->
-    <div class="row mb-5 align-items-center">
-        <div class="col-lg-5 text-center order-lg-2">
-            <img src="2.jpeg" alt="صورة 2" class="circle-frame" style="width:220px; height:220px;" onerror="this.src='https://via.placeholder.com/220/f9e4d4/5c3e2e?text=🍃'">
-        </div>
-        <div class="col-lg-7 order-lg-1">
-            <div class="bg-gradient-soft p-4 rounded-4" style="background:#fffcf9;">
-                <h2 class="h2" style="color:#5c3e2e;">الحمد لله الذي بنعمته تتم الصالحات</h2>
-                <p>الحمد لله الذي أكمل لنا العدة وبلغنا بفضله تمام الصيام والقيام. إن الفراغ من عبادة الصوم نعمة جليلة تستوجب شكراً عميقاً، فكم من نفسٍ تمنت البلوغ والتمام فحال بينها وبين ذلك القدر. نسأل الله أن يتقبل منا ومنكم القليل، ويتجاوز عن التقصير.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- القسم 3: تهنئة الوالد (صورة 3) -->
-    <div class="row mb-5">
-        <div class="col-lg-6">
-            <div class="kpi-card h-100">
-                <i class="fas fa-heart bg-icon-float"></i>
-                <h3>بسم الله الرحمن الرحيم</h3>
-                <p>الحمد الله أولًا وأخراً ظاهرًا وباطناً ..</p>
-                <p>أتقدم بالتهنئة أولًا لوالدي الكريم ثم لأبناء عمي الكرام وإخوتي الأعزاء وبنيهم، بقدوم عيد الفطر المبارك. أحمد الله على أن أتم لنا شهر رمضان على خير، عساكم من عواده.</p>
-            </div>
-        </div>
-        <div class="col-lg-6 text-center">
-            <img src="3.jpeg" alt="صورة 3" class="circle-frame" style="width:200px; height:200px;" onerror="this.src='https://via.placeholder.com/200/f9e4d4/5c3e2e?text=🤲'">
-        </div>
-    </div>
-
-    <!-- المتخرجون الجامعيون (صور 4,5,6) -->
-    <h2 class="section-title">التعليم الجامعي</h2>
-    <div class="row mb-5">
-        <div class="col-md-4"><div class="card-custom text-center"><img src="4.jpeg" class="circle-frame" onerror="this.src='https://via.placeholder.com/120/f9e4d4/5c3e2e?text=عمر'"><div class="person-name">عمر فهد البراهيم المحيميد</div><div class="person-detail">شريعة</div></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><img src="5.jpeg" class="circle-frame" onerror="this.src='https://via.placeholder.com/120/f9e4d4/5c3e2e?text=جابر'"><div class="person-name">جابر عبدالله البراهيم المحيميد</div><div class="person-detail">تسويق وابتكار</div></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><img src="6.jpeg" class="circle-frame" onerror="this.src='https://via.placeholder.com/120/f9e4d4/5c3e2e?text=راكان'"><div class="person-name">راكان احمد محمد المحيميد</div><div class="person-detail">رياضيات</div></div></div>
-    </div>
-
-    <!-- المتخرجون ثانوي (صورة 7 لريان فقط، والبنات أيقونات) -->
-    <h2 class="section-title">التعليم الثانوي</h2>
-    <div class="row mb-5">
-        <div class="col-md-4"><div class="card-custom text-center"><img src="7.jpeg" class="circle-frame" onerror="this.src='https://via.placeholder.com/120/f9e4d4/5c3e2e?text=ريان'"><div class="person-name">ريان البراهيم العبدالله المحيميد</div></div></div>
-        <!-- بنات بدون صور ← أيقونات -->
-        <div class="col-md-4"><div class="card-custom text-center"><div class="icon-circle"><i class="fas fa-female"></i></div><div class="person-name">جنى علي البراهيم المحيميد</div><span class="badge bg-secondary">ثانوي</span></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><div class="icon-circle"><i class="fas fa-female"></i></div><div class="person-name">ديم ماجد البراهيم المحيميد</div><span class="badge bg-secondary">ثانوي</span></div></div>
-    </div>
-
-    <!-- التفوق الجامعي (نور، نوره بدون صور ← أيقونات) + صور 8 و 9 -->
-    <h2 class="section-title">التفوق الجامعي</h2>
-    <div class="row mb-4">
-        <div class="col-md-3"><div class="kpi-card text-center"><i class="fas fa-star bg-icon-float"></i><div class="kpi-number">طب</div><h4>نور يوسف محمد المحيميد</h4><div class="icon-circle-small mx-auto"><i class="fas fa-female"></i></div></div></div>
-        <div class="col-md-3"><div class="kpi-card text-center"><i class="fas fa-chart-line bg-icon-float"></i><div class="kpi-number">4.95</div><h4>نوره عبدالله محمد المحيميد</h4><p>تمويل</p><div class="icon-circle-small mx-auto"><i class="fas fa-female"></i></div></div></div>
-        <div class="col-md-3"><div class="kpi-card text-center"><img src="8.jpeg" class="circle-frame-small mb-2" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=محمد'"><div class="kpi-number">4.60</div><h4>محمد احمد المحيميد</h4><p>ادارة</p></div></div>
-        <div class="col-md-3"><div class="kpi-card text-center"><img src="9.jpeg" class="circle-frame-small mb-2" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=عزام'"><div class="kpi-number">4.45</div><h4>عزام حمد البراهيم المحيميد</h4></div></div>
-    </div>
-
-    <!-- التفوق الثانوي مع صور (10,11,12)  وذكر البنات بدون صور تم دمجها بأيقونات سابقة؟ هنا نضيف مالك اسامه وجيه -->
-    <h2 class="section-title">التفوق الثانوي</h2>
-    <div class="row mb-5">
-        <div class="col-md-4"><div class="card-custom d-flex align-items-center"><img src="10.jpeg" class="circle-frame-small ms-3" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=مالك'"><div><h5>مالك ماجد المحيميد</h5><span class="badge" style="background:#8b6b4d; color:white;">99.42%</span></div></div></div>
-        <div class="col-md-4"><div class="card-custom d-flex align-items-center"><img src="11.jpeg" class="circle-frame-small ms-3" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=اسامه'"><div><h5>اسامه عبدالله المحيميد</h5><span class="badge" style="background:#8b6b4d; color:white;">100%</span></div></div></div>
-        <div class="col-md-4"><div class="card-custom d-flex align-items-center"><img src="12.jpeg" class="circle-frame-small ms-3" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=وجيه'"><div><h5>وجيه عبدالعزيز المحيميد</h5><span class="badge" style="background:#8b6b4d; color:white;">99%</span></div></div></div>
-    </div>
-
-    <!-- حفظ القرآن: صورة 13 لحسام + البنات أيقونات -->
-    <h2 class="section-title">حفظ القرآن الكريم</h2>
-    <div class="row mb-5">
-        <div class="col-md-4"><div class="card-custom text-center"><img src="13.jpeg" class="circle-frame" onerror="this.src='https://via.placeholder.com/120/f9e4d4/5c3e2e?text=حسام'"><h4>حسام عبدالله البراهيم المحيميد</h4><p>١٥ جزء</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><div class="icon-circle"><i class="fas fa-female"></i></div><h4>اروى عبدالله المحيميد</h4><p>كامل</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><div class="icon-circle"><i class="fas fa-female"></i></div><h4>شادن علي المحيميد</h4><p>١٠ أجزاء</p></div></div>
-    </div>
-
-    <!-- المواليد (صور من 14 إلى 20) مع أيقونات احتياطية -->
-    <h2 class="section-title">المواليد الجدد</h2>
-    <div class="row mb-5">
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="14.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=بلال'"><div class="person-name">بلال بن ماجد</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="15.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=رند'"><div class="person-name">رند بنت محمد</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="16.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=فهدة'"><div class="person-name">فهدة بنت ابراهيم</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="17.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=طلال'"><div class="person-name">طلال بن عبدالله</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="18.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=مها'"><div class="person-name">مها بنت عبدالعزيز</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="19.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=فهد'"><div class="person-name">فهد خالد</div></div></div>
-        <div class="col-6 col-md-3"><div class="card-custom text-center"><img src="20.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=سمو'"><div class="person-name">سمو جهاد صالح</div></div></div>
-    </div>
-
-    <!-- المشاريع التجارية: بعضها أيقونات وبعضها صور (21-29) -->
-    <h2 class="section-title">مشاريع أبناء الأسرة</h2>
-    <div class="row mb-4 g-4">
-        <!-- أيقونات لـ نكتال، حفلتي، لمعة -->
-        <div class="col-md-4"><div class="card-custom text-center"><div class="business-icon"><i class="fas fa-globe"></i></div><h5>شركة نكتال الخليج</h5><p>صالح وعبدالله المحيميد</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><div class="business-icon"><i class="fas fa-flower"></i></div><h5>حفلتي للورد الطبيعي</h5><p>عبدالعزيز المحيميد</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><div class="business-icon"><i class="fas fa-spray-can-sparkles"></i></div><h5>ورشة لمعة معدن</h5><p>جهاد صالح المحيميد</p></div></div>
-    </div>
-
-    <div class="row mb-5">
-        <!-- المحيميد لمواد البناء + رابط (صورة 21) -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="21.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=🏗️'"><h5>المحيميد لمواد البناء</h5><p>عبدالله حمد إبراهيم</p><a href="https://linktr.ee/Al_mohaimeed" target="_blank">🔗 linktr.ee</a></div></div>
-        <!-- موقع الحلى (صورة 22) -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="22.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=💍'"><h5>محل موقع الحلى</h5><p>إبراهيم عبدالله المحيميد</p></div></div>
-        <!-- شركة الفيصل (صورة 23) وإيكا (صورة 24) ندمجها -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="23.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=فيصل'"><h5>شركة الفيصل</h5><p>فيصل إبراهيم</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><img src="24.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=إيكا'"><h5>إيكا للاثاث</h5><p>فيصل إبراهيم</p></div></div>
-        <!-- صاد وان (صورة 25) -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="25.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=🚗'"><h5>صاد وان لزينة السيارات</h5><p>صالح عبدالله صالح</p></div></div>
-        <!-- xpc (صورة 26) و عبدالله محمد صالح (صورة 27) -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="26.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=XPC'"><h5>xpc</h5><p>عبدالله محمد صالح</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><img src="27.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=عبدالله'"><h5>عبدالله محمد صالح المحيميد</h5></div></div>
-        <!-- أيوب 28 و 29 -->
-        <div class="col-md-4"><div class="card-custom text-center"><img src="28.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=أيوب'"><h5>محل أيوب (مستلزمات)</h5><p>أيوب إبراهيم</p></div></div>
-        <div class="col-md-4"><div class="card-custom text-center"><img src="29.jpeg" class="circle-frame-small" onerror="this.src='https://via.placeholder.com/80/f9e4d4/5c3e2e?text=أيوب'"><h5>محل أيوب</h5><p>أيوب إبراهيم</p></div></div>
-        <!-- باقي المشاريع بدون صور (نكتفي) -->
-    </div>
-
-    <!-- رابط العائلة و QR -->
-    <div class="row mb-5">
-        <div class="col-lg-6"><div class="card-custom text-center"><i class="fas fa-qrcode fa-3x mb-2" style="color:#8b6b4d;"></i><h3>رابط العائلة</h3><img src="23.png" style="max-width:150px;" onerror="this.src='https://via.placeholder.com/150/f9e4d4/5c3e2e?text=QR'"><p class="mt-2"><a href="https://linktr.ee/Al_mohaimeed">linktr.ee/Al_mohaimeed</a></p></div></div>
-        <div class="col-lg-6"><div class="card-custom"><h3>محتويات المجلة</h3><ul class="list-unstyled"><li><i class="fas fa-star ms-2" style="color:#d4a59a;"></i> الغلاف</li><li><i class="fas fa-star ms-2" style="color:#d4a59a;"></i> المعايدة</li><li><i class="fas fa-star ms-2" style="color:#d4a59a;"></i> إنجازات تعليمية</li><li><i class="fas fa-star ms-2" style="color:#d4a59a;"></i> حفظ القرآن</li><li><i class="fas fa-star ms-2" style="color:#d4a59a;"></i> مواليد ومشاريع</li></ul></div></div>
-    </div>
-</div>
-
-<!-- SweetAlert ترحيب -->
-<script>
-    window.addEventListener('load', ()=>{
-        Swal.fire({ title:'بسم الله الرحمن الرحيم', text:'مجلة أسرة المحيميد - عيد الفطر', icon:'success', confirmButtonColor:'#8b6b4d', timer:2500, showConfirmButton:false });
-        // تفعيل fade
-        document.querySelectorAll('.fade-up').forEach(el => el.classList.add('active'));
-    });
-    // Scroll fade
-    window.addEventListener('scroll', ()=>{
-        document.querySelectorAll('.fade-up').forEach(el => {
-            if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('active');
+    <!-- SweetAlert2 ترحيب -->
+    <script>
+        // نافذة ترحيب عند التحميل
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                Swal.fire({
+                    title: 'بسم الله الرحمن الرحيم',
+                    text: 'مجلة أسرة المحيميد - عيد الفطر المبارك',
+                    icon: 'success',
+                    confirmButtonText: 'تصفح المجلة',
+                    confirmButtonColor: '#8b6b4d',
+                    background: '#fbf9f7',
+                    backdrop: `rgba(92,62,46,0.2)`,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }, 500);
         });
-    });
-    // تكبير الصور عند النقر
-    document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('click', function(){
-            if(this.src) Swal.fire({ imageUrl:this.src, showConfirmButton:false, background:'#fbf7f3' });
+
+        // تفعيل animate on scroll
+        const fadeElements = document.querySelectorAll('.fade-up');
+        
+        const checkFade = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+        
+        // عرض الصور عند الضغط عليها
+        document.querySelectorAll('.img-rounded, .img-circle, .img-gallery').forEach(img => {
+            img.addEventListener('click', function() {
+                Swal.fire({
+                    imageUrl: this.src,
+                    imageAlt: 'صورة من المجلة',
+                    background: '#fbf9f7',
+                    confirmButtonColor: '#8b6b4d',
+                    showConfirmButton: true,
+                    confirmButtonText: 'إغلاق'
+                });
+            });
         });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
