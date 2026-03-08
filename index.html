@@ -183,6 +183,34 @@
             box-shadow: var(--shadow-sm);
         }
         
+        .icon-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+            background: linear-gradient(135deg, #fdf1e6 0%, #f9e4d4 100%);
+            color: var(--primary-color);
+        }
+        
+        .icon-placeholder-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border: 4px solid white;
+            box-shadow: var(--shadow-sm);
+            background: linear-gradient(135deg, #fdf1e6 0%, #f9e4d4 100%);
+            color: var(--primary-color);
+        }
+        
         .img-gallery {
             border-radius: var(--border-radius-image);
             transition: var(--transition-smooth);
@@ -522,8 +550,10 @@
         <div class="row mb-5">
             <div class="col-md-4 mb-4">
                 <div class="card-custom text-center">
-                    <img src="7.jpeg" alt="ريان البراهيم" class="img-circle-small mb-3" onerror="this.src='https://via.placeholder.com/100x100/f9e4d4/5c3e2e?text=ريان'">
-                    <h4>ريان البراهيم العبدالله المحيميد</h4>
+                    <div class="icon-placeholder-circle">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h4 class="mt-3">ريان البراهيم العبدالله المحيميد</h4>
                     <span class="achievement-badge">ثانوي فقط</span>
                 </div>
             </div>
@@ -610,7 +640,7 @@
 
         <!-- زواج ومواليد -->
         <div class="row mb-5">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h2 class="section-title fade-up">المواليد الجدد</h2>
                 <div class="row">
                     <div class="col-sm-6 mb-3">
@@ -671,56 +701,72 @@
         <div class="row mb-5">
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-building bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-hammer" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>المحيميد لمواد البناء</h4>
                     <p>عبدالله حمد إبراهيم المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-store bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-ring" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>محل موقع الحلى</h4>
                     <p>إبراهيم عبدالله إبراهيم المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-couch bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-couch" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>شركة الفيصل، إيكا للاثاث</h4>
                     <p>فيصل إبراهيم المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-car bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-car" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>صاد وان لزينة السيارات</h4>
                     <p>صالح عبدالله صالح المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-tag bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-laptop" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>XPC</h4>
                     <p>عبدالله محمد صالح المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-user bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>صورة إضافية</h4>
                     <p>عبدالله محمد صالح المحيميد</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-tshirt bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-shirt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>محل أيوب للمستلزمات الرجالية</h4>
                     <p>أيوب إبراهيم المحيميد (صورة 1)</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card-custom">
-                    <i class="fas fa-tshirt bg-icon-float"></i>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-shirt" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
                     <h4>محل أيوب للمستلزمات الرجالية</h4>
                     <p>أيوب إبراهيم المحيميد (صورة 2)</p>
                 </div>
